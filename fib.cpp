@@ -1,12 +1,17 @@
 #include <iostream>
+#include <unordered_map>
 
-int fib(int n){
+int fib(int n, std::unordered_map<int, int> &m){
   if(n <= 2) return 1;
-  return fib(n-1)+fib(n-2);
+  if(m.find(n) == m.end()){
+    m[n] = fib(n-1, m)+fib(n-2, m);
+  }
+  return m[n];
 }
 
 int main() {
   int n;
   std::cin >> n;
-  std::cout << fib(n) << std::endl;
+  std::unordered_map<int, int> m;
+  std::cout << fib(n, m) << std::endl;
 } 
