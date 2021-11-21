@@ -2,10 +2,9 @@
 #include <unordered_map>
 
 int fib(int n, std::unordered_map<int, int> &m){
+  if(m.find(n) != m.end()) return m[n];
   if(n <= 2) return 1;
-  if(m.find(n) == m.end()){
-    m[n] = fib(n-1, m)+fib(n-2, m);
-  }
+  m[n] = fib(n-1, m)+fib(n-2, m);
   return m[n];
 }
 
