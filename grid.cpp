@@ -2,11 +2,11 @@
 #include <unordered_map>
 
 int grid(int m, int n, std::unordered_map<std::string, int> &h){
+  std::string p = std::to_string(m)+','+ std::to_string(n);
+  if(h.find(p) != h.end()) return h[p];  
   if(m == 1 && n == 1) return 1;
   if(m == 0 || n == 0) return 0;
-  std::string p = std::to_string(m)+','+ std::to_string(n);
-  if(h.find(p) == h.end())
-    h[p] = grid(m-1, n, h) + grid(m, n-1, h);
+  h[p] = grid(m-1, n, h) + grid(m, n-1, h);
   return h[p];  
 }
 
