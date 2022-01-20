@@ -16,7 +16,23 @@ bool canSum(int n, std::vector<int> a, std::unordered_map<int, bool> &m){
   return false;
 }
 
+bool canSumTab(int target, std::vector<int> numbers){
+  std::vector<bool> a(target+1, false);
+  a[0] = true;
+  for(int i = 0; i <= target; i++){
+    if(a[i] == true){
+      for(int j : numbers){
+        if(i + j <= target){
+          a[i + j] = true;
+        }
+      }
+    }
+  }
+  return a[target];
+}
+
 int main(){
-  std::unordered_map<int, bool> m;
-  std::cout << canSum(300, {7, 15}, m) << std::endl;
+  // std::unordered_map<int, bool> m;
+  // std::cout << canSum(300, {7, 15}, m) << std::endl;
+  std::cout << (canSumTab(300, {7, 15}) ? "true" : "false") << std::endl;
 }

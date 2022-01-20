@@ -18,9 +18,26 @@ std::vector<int> howSum(int n, std::vector<int> v, std::unordered_map<int, std::
   return {-1};  
 }
 
+std::vector<int> howSumTab(int target, std::vector<int> numbers){
+  std::vector<std::vector<int>> a(target+1, std::vector<int>(1,-1));
+  a[0] = {};
+  for(int i = 0; i <= target; i++){
+    if(a[i].empty() || (!a[i].empty() && a[i][0] != -1)){
+      for(int j : numbers){
+        if(i + j <= target){
+          a[i + j] = std::vector<int> (a[i]);
+          a[i+j].push_back(j);
+        }
+      }
+    }
+  }
+  return a[target];
+}
+
 int main(){
-  std::unordered_map<int, std::vector<int>> m;
-  std::vector<int> v = howSum(300, {7, 15}, m);
+  // std::unordered_map<int, std::vector<int>> m;
+  // std::vector<int> v = howSum(300, {7, 15}, m);
+  std::vector<int> v = howSumTab(300, {7, 15});
   for(auto i : v){
     std::cout << i << " ";
   }
