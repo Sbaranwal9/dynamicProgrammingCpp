@@ -18,7 +18,23 @@ bool canConstruct(std::string target, std::vector<std::string> wordBank, std::un
   return false;
 }
 
+bool canConstructTab(std::string target, std::vector<std::string> wordBank){
+  std::vector<bool> a (target.length() + 1, false);
+  a[0] = true;
+  for(int i = 0; i <= target.length(); i++){
+    if(a[i] == true){
+      for(auto word : wordBank){
+        if(i + word.length() <= target.length() && target.substr(i, word.length()).compare(word) == 0){
+          a[i + word.length()] = true;
+        }
+      }
+    }
+  }
+  return a[target.length()];
+}
+
 int main(){
-  std::unordered_map<std::string, bool> m;
-  std::cout << canConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", {"e", "ee", "eee", "eeee", "eeeee", "eeeeee"}, m) << std::endl;
+  // bool b = canConstruct("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeef", {"e", "ee", "eee", "eeee", "eeeee", "eeeeee"}, m);
+  bool b = canConstructTab("enterapotentpot", {"a", "p", "ent", "enter", "ot", "o", "t"});
+  std::cout << (b ? "true" : "false") << std::endl;
 }
