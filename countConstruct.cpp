@@ -16,7 +16,23 @@ int countConstruct(std::string target, std::vector<std::string> wordBank, std::u
   return tot;
 }
 
+int countConstructTab(std::string target, std::vector<std::string> wordBank){
+  std::vector<int> a(target.length() + 1, 0);
+  a[0] = 1;
+  for(int i = 0; i <= target.length(); i++){
+    if(a[i] >= 1){
+      for(auto word : wordBank){
+        if(i + word.length() <= target.length() && target.substr(i, word.length()).compare(word) == 0){
+          a[i + word.length()] += a[i]; 
+        }
+      }
+    }
+  }
+  return a[target.length()];
+}
+
 int main(){
-  std::unordered_map<std::string, int> m;
-  std::cout << countConstruct("purple",{"purp", "p", "ur", "le", "purpl"}, m) << std::endl;
+  // std::unordered_map<std::string, int> m;
+  // std::cout << countConstruct("purple",{"purp", "p", "ur", "le", "purpl"}, m) << std::endl;
+   std::cout << countConstructTab("purple",{"purp", "p", "ur", "le", "purpl"}) << std::endl;
 }
