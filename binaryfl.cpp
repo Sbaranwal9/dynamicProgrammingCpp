@@ -27,7 +27,7 @@ vector<int> searchRange(vector<int>& nums, int target) {
             else if(nums[m] < target) l = m + 1;
             else{
                 r[0] = m;
-                h--;
+                h = m - 1;
             }
         }
         // finding second occurance
@@ -38,7 +38,7 @@ vector<int> searchRange(vector<int>& nums, int target) {
             else if(nums[m] < target) l = m + 1;
             else{
                 r[1] = m;
-                l++;
+                l = m + 1;
             }
         }
         return r;
