@@ -9,7 +9,7 @@ vector<int> searchRange1(vector<int>& nums, int target) {
     if(nums[mid] < target) l = mid + 1;
     else if(nums[mid] > target) h = mid - 1;
     else{
-      if(nums[l] == target && nums[h] == target) return {l, h};
+      if(nums[l] ==   target && nums[h] == target) return {l, h};
       if(nums[l] < target) l++;
       if(nums[h] > target) h--;
     }
