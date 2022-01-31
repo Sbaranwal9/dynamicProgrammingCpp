@@ -20,11 +20,13 @@ int searchLower(vector<int> nums, int target) {
   while(l < h){ 
     // upper mid
     int mid = l + (h - l + 1) / 2;
+    cout << l << " " << mid << " " << h << endl;
     if(nums[mid] > target) h = mid - 1;
     else l = mid;
   }
-  if(nums[l] == target) return l;
-  return -1;
+  // if(nums[l] == target) return l;
+  // return -1;
+  return nums[l];
 }
 
 // higher
@@ -33,14 +35,18 @@ int searchHigher(vector<int> nums, int target) {
   while(l < h){
     // lower mid
     int mid = l + (h - l) / 2;
+    cout << l << " " << mid << " " << h << endl;
     if(nums[mid] < target) l = mid + 1;
     else h = mid;
   }
-  if(nums[l] == target) return l;
-  return -1;
+  // if(nums[l] == target) return l;
+  // return -1;
+  return nums[l];
 }
 
 int main(){
-  cout << search({-1,0,3,5,9,12}, 2) << endl;
+  // cout << search({-1,0,3,5,9,12}, 2) << endl;
+  cout << searchLower({-1,0,3,5,9,12}, 2) << endl;
+  // cout << searchHigher({-1,0,3,5,9,12}, 2) << endl;
   return 0;
 }
